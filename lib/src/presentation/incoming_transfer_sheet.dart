@@ -168,8 +168,11 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                 ),
                 child: Row(
                   children: [
-                    _stat(Icons.folder_rounded, '${t.itemCount}',
-                        '${t.itemCount == 1 ? "Item" : "Items"}'),
+                    _stat(
+                      Icons.folder_rounded,
+                      '${t.itemCount}',
+                      t.itemCount == 1 ? 'Item' : 'Items',
+                    ),
                     _divider(),
                     _stat(Icons.access_time_rounded, when, 'Received'),
                   ],

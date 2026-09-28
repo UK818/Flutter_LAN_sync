@@ -1,9 +1,7 @@
 name: flutter_lan_sync
 description: >
-  Production-grade offline LAN sync for Flutter apps.
-  Peer-to-peer transfer of any JSON-serialisable data over Wi-Fi using
-  X25519 ECDH + AES-256-GCM encryption, HMAC app-identity verification,
-  UDP broadcast discovery, and a CRDT Last-Write-Wins merge strategy.
+  Secure offline peer-to-peer data synchronization for Flutter apps over
+  local Wi-Fi, with encrypted transfers, discovery, and conflict handling.
 repository: https://github.com/UK818/Flutter_LAN_sync
 issue_tracker: https://github.com/UK818/Flutter_LAN_sync/issues
 version: 0.1.2

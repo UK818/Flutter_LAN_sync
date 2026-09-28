@@ -1,7 +1,14 @@
 ## 0.1.2
 
 - Moved the package to its independent GitHub repository and removed host-app
- branding from package documentation, metadata, and source comments.
+  branding from package documentation, metadata, and source comments.
+- Added a runnable example covering initialization, incoming-transfer handling,
+  and the LAN sync screen.
+- Enabled the recommended Flutter lint rules and verified Dart formatting.
+- Shortened the package description and corrected the GitHub repository and
+  issue-tracker metadata used by pub.dev.
+- Expanded public API documentation without changing runtime behavior or
+  dependency compatibility.
 
 ## 0.1.1
 

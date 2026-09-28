@@ -28,9 +28,13 @@ import 'incoming_transfer_sheet.dart';
 /// );
 /// ```
 class LanTransferListener extends StatefulWidget {
+  /// Application subtree that receives global incoming-transfer prompts.
   final Widget child;
+
+  /// Root navigator used to present incoming-transfer sheets.
   final GlobalKey<NavigatorState>? navigatorKey;
 
+  /// Creates a listener around [child].
   const LanTransferListener({
     super.key,
     required this.child,

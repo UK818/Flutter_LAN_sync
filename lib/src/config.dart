@@ -18,11 +18,19 @@ const int lanSyncProtocolVersion = 2;
 /// )
 /// ```
 class LanSyncItem {
+  /// Stable identifier used to match this item across peers.
   final String id;
+
+  /// Human-readable label shown in transfer-selection interfaces.
   final String displayName;
+
+  /// JSON-serializable payload transferred to the receiving peer.
   final Map<String, dynamic> data;
+
+  /// Optional host-defined category for heterogeneous item collections.
   final String? dataType;
 
+  /// Creates an item that can be offered to a LAN peer.
   const LanSyncItem({
     required this.id,
     required this.displayName,
@@ -94,11 +102,16 @@ class LanSyncConfig {
     this.navigatorKey,
   });
 
+  /// Normalizes a scope component before comparison or signing.
   static String normalizeScopePart(String value) => value.trim().toLowerCase();
 
+  /// Normalized facility identifier used for peer-scope checks.
   String get normalizedFacilityId => normalizeScopePart(facilityId);
+
+  /// Normalized instance type used for peer-scope checks.
   String get normalizedInstanceType => normalizeScopePart(instanceType);
 
+  /// Whether both values required for scoped peer matching are available.
   bool get hasCompletePeerScope =>
       normalizedFacilityId.isNotEmpty && normalizedInstanceType.isNotEmpty;
 
@@ -115,6 +128,7 @@ class LanSyncConfig {
     return Hmac(sha256, key).convert(utf8.encode(value)).toString();
   }
 
+  /// Throws when strict peer scoping is enabled without complete scope data.
   void validatePeerScope() {
     if (requireScopedPeers && !hasCompletePeerScope) {
       throw StateError(
@@ -123,6 +137,7 @@ class LanSyncConfig {
     }
   }
 
+  /// Returns whether a peer's signed scope matches this configuration.
   bool acceptsPeerScope({
     required String peerFacilityId,
     required String peerInstanceType,
@@ -130,8 +145,9 @@ class LanSyncConfig {
     required int peerProtocolVersion,
   }) {
     if (peerProtocolVersion != lanSyncProtocolVersion) return false;
-    if (!hasCompletePeerScope)
+    if (!hasCompletePeerScope) {
       return !requireScopedPeers && peerScopeId.isEmpty;
+    }
     return normalizeScopePart(peerFacilityId) == normalizedFacilityId &&
         normalizeScopePart(peerInstanceType) == normalizedInstanceType &&
         peerScopeId == scopeId;

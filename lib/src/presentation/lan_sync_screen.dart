@@ -28,9 +28,13 @@ import 'ls_theme.dart';
 /// )
 /// ```
 class LanSyncScreen extends StatefulWidget {
+  /// Items available for the user to select and transfer.
   final List<LanSyncItem> items;
+
+  /// Singular label used for items in the package interface.
   final String itemLabel;
 
+  /// Creates the package's device, transfer-management, and history screen.
   const LanSyncScreen({
     super.key,
     this.items = const [],
@@ -1723,11 +1727,12 @@ class _HistoryTabState extends State<_HistoryTab> {
 
   Future<void> _load() async {
     final logs = await widget.svc.getTransferHistory();
-    if (mounted)
+    if (mounted) {
       setState(() {
         _logs = logs;
         _loading = false;
       });
+    }
   }
 
   @override
