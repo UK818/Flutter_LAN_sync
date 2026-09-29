@@ -1,3 +1,10 @@
+## 0.1.4
+
+- Updated analyzer exclusions for generated build output in the package and
+  example, keeping lint analysis focused on maintained source files.
+- Verified the package has zero Flutter analyzer errors, warnings, or lint
+  diagnostics on the current stable toolchain.
+
 ## 0.1.3
 
 - Updated `flutter_secure_storage` to 10.x, retaining automatic Android
