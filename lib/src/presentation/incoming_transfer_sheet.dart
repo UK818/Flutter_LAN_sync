@@ -95,13 +95,13 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
       builder: (_, ctrl) => Container(
         decoration: BoxDecoration(
           color: LsColors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
           children: [
             // Handle
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: Center(
                 child: Container(
                   width: 36,
@@ -116,7 +116,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
 
             // Header
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   Container(
@@ -129,7 +129,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                     child: Icon(Icons.download_rounded,
                         color: LsColors.primary, size: 22),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,13 +154,13 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
               ),
             ),
 
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             // Summary card
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
-                padding: EdgeInsets.all(14),
+                padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   color: LsColors.background,
                   borderRadius: BorderRadius.circular(12),
@@ -180,15 +180,15 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
               ),
             ),
 
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
 
             // Item list
             if (names.isNotEmpty) ...[
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(children: [
                   Icon(Icons.list_rounded, size: 14, color: LsColors.subText),
-                  SizedBox(width: 6),
+                  const SizedBox(width: 6),
                   Text(
                     '${names.length} item${names.length == 1 ? "" : "s"}',
                     style: TextStyle(
@@ -198,11 +198,11 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                   ),
                 ]),
               ),
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
               Expanded(
                 child: ListView.builder(
                   controller: ctrl,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   itemCount: names.length,
                   itemBuilder: (_, i) {
                     final initials = names[i]
@@ -214,7 +214,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                         .join()
                         .toUpperCase();
                     return Padding(
-                      padding: EdgeInsets.only(bottom: 6),
+                      padding: const EdgeInsets.only(bottom: 6),
                       child: Row(children: [
                         CircleAvatar(
                           radius: 16,
@@ -228,7 +228,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                                 color: LsColors.primary),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: Text(names[i],
                               style: TextStyle(
@@ -245,7 +245,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
             // Actions
             SafeArea(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 12, 20, 8),
+                padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
                 child: Row(children: [
                   Expanded(
                     child: OutlinedButton(
@@ -253,7 +253,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                         foregroundColor: LsColors.danger,
                         side: BorderSide(
                             color: LsColors.danger.withValues(alpha: 0.5)),
-                        padding: EdgeInsets.symmetric(vertical: 14),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -262,14 +262,14 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                           style: TextStyle(fontWeight: FontWeight.w700)),
                     ),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Expanded(
                     flex: 2,
                     child: FilledButton.icon(
                       style: FilledButton.styleFrom(
                         backgroundColor:
                             _busy ? LsColors.border : LsColors.success,
-                        padding: EdgeInsets.symmetric(vertical: 14),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -279,12 +279,12 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
                               height: 14,
                               child: CircularProgressIndicator(
                                   strokeWidth: 2, color: LsColors.white))
-                          : Icon(Icons.check_rounded, size: 18),
+                          : const Icon(Icons.check_rounded, size: 18),
                       label: Text(
                         _busy
                             ? 'Saving…'
                             : 'Accept ${t.itemCount} Item${t.itemCount == 1 ? "" : "s"}',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                        style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       onPressed: _busy ? null : _accept,
                     ),
@@ -302,7 +302,7 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
     return Expanded(
       child: Column(children: [
         Icon(icon, size: 18, color: LsColors.primary),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(value,
             style: TextStyle(
                 fontWeight: FontWeight.w700,
@@ -317,5 +317,5 @@ class _IncomingTransferSheetState extends State<IncomingTransferSheet> {
       height: 36,
       width: 1,
       color: LsColors.border,
-      margin: EdgeInsets.symmetric(horizontal: 8));
+      margin: const EdgeInsets.symmetric(horizontal: 8));
 }

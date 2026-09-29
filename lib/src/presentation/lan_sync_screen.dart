@@ -128,7 +128,7 @@ class _LanSyncScreenState extends State<LanSyncScreen>
         actions: [
           if (_status.serverRunning) _LiveDot(),
           IconButton(
-            icon: Icon(Icons.help_outline_rounded, size: 22),
+            icon: const Icon(Icons.help_outline_rounded, size: 22),
             tooltip: 'How to connect',
             onPressed: () => showModalBottomSheet(
               context: context,
@@ -146,7 +146,8 @@ class _LanSyncScreenState extends State<LanSyncScreen>
           indicatorColor: LsColors.primary,
           indicatorWeight: 2.5,
           dividerColor: LsColors.border,
-          labelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+          labelStyle:
+              const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
           tabs: const [
             Tab(
                 icon: Icon(Icons.wifi_tethering_rounded, size: 18),
@@ -205,13 +206,13 @@ class _LiveDotState extends State<_LiveDot>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 4),
+      padding: const EdgeInsets.only(right: 4),
       child: FadeTransition(
         opacity: _anim,
         child: Container(
           width: 8,
           height: 8,
-          margin: EdgeInsets.only(top: 2),
+          margin: const EdgeInsets.only(top: 2),
           decoration: BoxDecoration(
             color: LsColors.success,
             shape: BoxShape.circle,
@@ -243,11 +244,11 @@ class _ConnectionGuideSheet extends StatelessWidget {
       builder: (_, ctrl) => Container(
         decoration: BoxDecoration(
           color: LsColors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: SingleChildScrollView(
           controller: ctrl,
-          padding: EdgeInsets.fromLTRB(20, 12, 20, 32),
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -260,17 +261,17 @@ class _ConnectionGuideSheet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(2)),
                 ),
               ),
-              SizedBox(height: 18),
+              const SizedBox(height: 18),
               Text('Quick-Start Guide',
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 17,
                       color: LsColors.text)),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text('Get two devices syncing in under two minutes.',
                   style: TextStyle(
                       fontSize: 12, color: LsColors.subText, height: 1.4)),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _step(
                   1,
                   Icons.router_rounded,
@@ -302,9 +303,9 @@ class _ConnectionGuideSheet extends StatelessWidget {
                   'Send ${itemLabel}s',
                   'Tap "Sync" on an approved device to choose which ${itemLabel.toLowerCase()}s to send.',
                   isLast: true),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: LsColors.info.withValues(alpha: 0.07),
                   borderRadius: BorderRadius.circular(10),
@@ -316,7 +317,7 @@ class _ConnectionGuideSheet extends StatelessWidget {
                   children: [
                     Icon(Icons.lock_outline_rounded,
                         color: LsColors.info, size: 16),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         'All data is encrypted with AES-256-GCM. Keys are derived per device-pair via X25519 ECDH — never sent in plaintext.',
@@ -357,17 +358,17 @@ class _ConnectionGuideSheet extends StatelessWidget {
               Container(width: 2, height: 44, color: LsColors.border),
           ]),
         ),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(bottom: isLast ? 0 : 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Row(children: [
                   Icon(icon, size: 13, color: color),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Expanded(
                     child: Text(title,
                         style: TextStyle(
@@ -376,7 +377,7 @@ class _ConnectionGuideSheet extends StatelessWidget {
                             color: LsColors.text)),
                   ),
                 ]),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(body,
                     style: TextStyle(
                         fontSize: 12, color: LsColors.subText, height: 1.45)),
@@ -541,10 +542,10 @@ class _DevicesTabState extends State<_DevicesTab> {
     } on TimeoutException {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
+          content: const Text(
               'Transfer timed out — the other device may have disconnected.'),
           backgroundColor: LsColors.danger,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
         ));
       }
     } catch (e) {
@@ -590,19 +591,19 @@ class _DevicesTabState extends State<_DevicesTab> {
       await _loadKnownDevices();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
+          content: const Text(
               'Connected — go to the other device\'s Manage tab and tap Approve'),
           backgroundColor: LsColors.success,
-          duration: Duration(seconds: 5),
+          duration: const Duration(seconds: 5),
         ));
       }
     } on TimeoutException {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
+          content: const Text(
               'Connection timed out. Check the other device has started its server.'),
           backgroundColor: LsColors.danger,
-          duration: Duration(seconds: 5),
+          duration: const Duration(seconds: 5),
         ));
       }
     } catch (e) {
@@ -659,7 +660,7 @@ class _DevicesTabState extends State<_DevicesTab> {
       ..sort((a, b) => b.lastSeen.compareTo(a.lastSeen));
 
     return ListView(
-      padding: EdgeInsets.fromLTRB(16, 14, 16, 32),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 32),
       children: [
         _ServerCard(
           status: widget.status,
@@ -670,10 +671,10 @@ class _DevicesTabState extends State<_DevicesTab> {
           onSyncAll: _syncAll,
         ),
         if (widget.status.lastError != null) ...[
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _ErrorBanner(widget.status.lastError!),
         ],
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _SectionLabel(
           icon: Icons.wifi_find_rounded,
           label: 'Connected Devices',
@@ -686,13 +687,13 @@ class _DevicesTabState extends State<_DevicesTab> {
                   color: LsColors.warning,
                 ),
               if (running) ...[
-                if (widget.pendingTransferCount > 0) SizedBox(width: 8),
+                if (widget.pendingTransferCount > 0) const SizedBox(width: 8),
                 _WatchingPill(),
               ],
             ],
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         if (!running)
           _HintCard(
             icon: Icons.play_circle_outline_rounded,
@@ -718,7 +719,7 @@ class _DevicesTabState extends State<_DevicesTab> {
             );
           }),
         if (widget.items.isNotEmpty && running && onlineEntries.isNotEmpty) ...[
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _HintCard(
             icon: Icons.folder_open_rounded,
             text:
@@ -756,7 +757,7 @@ class _ServerCard extends StatelessWidget {
     final df = DateFormat('MMM d, h:mm a');
 
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: LsColors.white,
         borderRadius: BorderRadius.circular(14),
@@ -776,7 +777,7 @@ class _ServerCard extends StatelessWidget {
           Row(
             children: [
               _PulseIndicator(active: running),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -800,12 +801,13 @@ class _ServerCard extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Clipboard.setData(ClipboardData(text: svc.deviceId));
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Device ID copied'),
                       duration: Duration(seconds: 1)));
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: LsColors.background,
                     borderRadius: BorderRadius.circular(6),
@@ -821,7 +823,7 @@ class _ServerCard extends StatelessWidget {
                             fontFamily: 'monospace',
                             color: LsColors.subText),
                       ),
-                      SizedBox(width: 4),
+                      const SizedBox(width: 4),
                       Icon(Icons.copy_rounded, size: 11, color: LsColors.hint),
                     ],
                   ),
@@ -834,7 +836,7 @@ class _ServerCard extends StatelessWidget {
             Row(children: [
               Icon(Icons.check_circle_outline_rounded,
                   size: 13, color: LsColors.success),
-              SizedBox(width: 6),
+              const SizedBox(width: 6),
               Text(
                 'Last sync: ${df.format(status.lastSyncAt!)} · ${status.peersSynced} peer${status.peersSynced == 1 ? "" : "s"}',
                 style: TextStyle(fontSize: 11, color: LsColors.subText),
@@ -857,7 +859,7 @@ class _ServerCard extends StatelessWidget {
                 onPressed: toggling ? null : onToggle,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               flex: 2,
               child: _Btn(
@@ -908,7 +910,7 @@ class _LiveDeviceCard extends StatelessWidget {
             : LsColors.primary;
 
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: LsColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -921,7 +923,7 @@ class _LiveDeviceCard extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.all(14),
+        padding: const EdgeInsets.all(14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -936,7 +938,7 @@ class _LiveDeviceCard extends StatelessWidget {
                 child: Icon(Icons.phone_android_rounded,
                     color: accentColor, size: 22),
               ),
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -955,7 +957,7 @@ class _LiveDeviceCard extends StatelessWidget {
                       ),
                       _OnlineBadge(),
                     ]),
-                    SizedBox(height: 2),
+                    const SizedBox(height: 2),
                     Text('${peer.host}:${peer.port}',
                         style:
                             TextStyle(fontSize: 11, color: LsColors.subText)),
@@ -965,7 +967,7 @@ class _LiveDeviceCard extends StatelessWidget {
                 ),
               ),
             ]),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             if (unknown)
               _ConnectRow(loading: isHandshaking, onConnect: onConnect)
             else if (pending)
@@ -983,7 +985,7 @@ class _OnlineBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
         color: LsColors.success.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
@@ -1002,7 +1004,7 @@ class _OnlineBadge extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         Text('Online',
             style: TextStyle(
                 fontSize: 10,
@@ -1022,12 +1024,12 @@ class _ConnectRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Icon(Icons.info_outline_rounded, size: 13, color: LsColors.subText),
-      SizedBox(width: 6),
+      const SizedBox(width: 6),
       Expanded(
         child: Text('First time? Tap Connect to pair.',
             style: TextStyle(fontSize: 11, color: LsColors.subText)),
       ),
-      SizedBox(width: 8),
+      const SizedBox(width: 8),
       _Btn(
           label: 'Connect',
           color: LsColors.primary,
@@ -1042,14 +1044,14 @@ class _PendingRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: LsColors.warning.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(children: [
         Icon(Icons.hourglass_top_rounded, size: 14, color: LsColors.warning),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Expanded(
           child: Text(
             'Awaiting approval — go to the other device\'s Manage tab and tap Approve.',
@@ -1070,7 +1072,7 @@ class _SyncRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Icon(Icons.autorenew_rounded, size: 13, color: LsColors.success),
-      SizedBox(width: 6),
+      const SizedBox(width: 6),
       Expanded(
         child: Text('Approved · tap Sync to send items',
             style: TextStyle(
@@ -1078,7 +1080,7 @@ class _SyncRow extends StatelessWidget {
                 color: LsColors.success,
                 fontWeight: FontWeight.w600)),
       ),
-      SizedBox(width: 8),
+      const SizedBox(width: 8),
       _Btn(
           label: 'Sync',
           icon: Icons.sync_rounded,
@@ -1137,12 +1139,12 @@ class _ItemPickerSheetState extends State<_ItemPickerSheet> {
       builder: (_, ctrl) => Container(
         decoration: BoxDecoration(
           color: LsColors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 12, bottom: 8),
+              padding: const EdgeInsets.only(top: 12, bottom: 8),
               child: Center(
                 child: Container(
                   width: 36,
@@ -1154,7 +1156,7 @@ class _ItemPickerSheetState extends State<_ItemPickerSheet> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(children: [
                 Expanded(
                   child: Column(
@@ -1175,14 +1177,14 @@ class _ItemPickerSheetState extends State<_ItemPickerSheet> {
                   onPressed: widget.onSyncAll,
                   style: TextButton.styleFrom(
                       foregroundColor: LsColors.primary,
-                      textStyle:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700)),
-                  child: Text('Sync All'),
+                      textStyle: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700)),
+                  child: const Text('Sync All'),
                 ),
               ]),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: TextField(
                 onChanged: (v) => setState(() => _search = v),
                 decoration: InputDecoration(
@@ -1197,14 +1199,14 @@ class _ItemPickerSheetState extends State<_ItemPickerSheet> {
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: LsColors.border)),
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   filled: true,
                   fillColor: LsColors.background,
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(children: [
                 Checkbox(
                   value: allSelected,
@@ -1285,7 +1287,7 @@ class _ItemPickerSheetState extends State<_ItemPickerSheet> {
             ),
             SafeArea(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
                 child: SizedBox(
                   width: double.infinity,
                   child: FilledButton.icon(
@@ -1293,17 +1295,17 @@ class _ItemPickerSheetState extends State<_ItemPickerSheet> {
                       backgroundColor: _selected.isEmpty
                           ? LsColors.border
                           : LsColors.primary,
-                      padding: EdgeInsets.symmetric(vertical: 14),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                     ),
-                    icon: Icon(Icons.sync_rounded, size: 18),
+                    icon: const Icon(Icons.sync_rounded, size: 18),
                     label: Text(
                       _selected.isEmpty
                           ? 'Select ${label.toLowerCase()}s to sync'
                           : 'Sync ${_selected.length} $label${_selected.length == 1 ? "" : "s"}',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700, fontSize: 14),
                     ),
                     onPressed: _selected.isEmpty
                         ? null
@@ -1382,7 +1384,7 @@ class _ManageTabState extends State<_ManageTab> {
     final approved = _devices.where((d) => d.approved).toList();
 
     return ListView(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       children: [
         _HintCard(
           icon: Icons.info_outline_rounded,
@@ -1391,7 +1393,7 @@ class _ManageTabState extends State<_ManageTab> {
           color: LsColors.info,
         ),
         if (_pendingTransfers.isNotEmpty) ...[
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _SectionLabel(
             icon: Icons.download_rounded,
             label: 'Incoming Transfers',
@@ -1400,7 +1402,7 @@ class _ManageTabState extends State<_ManageTab> {
               color: LsColors.warning,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           ..._pendingTransfers.map(
             (transfer) => _PendingTransferCard(
               transfer: transfer,
@@ -1409,39 +1411,39 @@ class _ManageTabState extends State<_ManageTab> {
           ),
         ],
         if (pending.isNotEmpty) ...[
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _SectionLabel(
             icon: Icons.pending_actions_rounded,
             label: 'Awaiting Approval',
             trailing:
                 _CountBadge(count: pending.length, color: LsColors.warning),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           ...pending.map((d) => _DeviceManageCard(device: d, svc: widget.svc)),
         ],
         if (approved.isNotEmpty) ...[
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _SectionLabel(
             icon: Icons.check_circle_rounded,
             label: 'Approved Devices',
             trailing:
                 _CountBadge(count: approved.length, color: LsColors.success),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           ...approved.map((d) => _DeviceManageCard(device: d, svc: widget.svc)),
         ],
         if (_devices.isEmpty && _pendingTransfers.isEmpty)
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 48),
+            padding: const EdgeInsets.symmetric(vertical: 48),
             child: Column(children: [
               Icon(Icons.devices_rounded, size: 56, color: LsColors.border),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Text('No paired devices yet',
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 15,
                       color: LsColors.subText)),
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
               Text(
                 'Start the server on both devices,\nthen tap "Connect" on the Devices tab.',
                 textAlign: TextAlign.center,
@@ -1474,8 +1476,8 @@ class _PendingTransferCard extends StatelessWidget {
         : 'Peer device';
 
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.all(14),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: LsColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -1503,7 +1505,7 @@ class _PendingTransferCard extends StatelessWidget {
               size: 20,
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1516,7 +1518,7 @@ class _PendingTransferCard extends StatelessWidget {
                     color: LsColors.text,
                   ),
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
                 Text(
                   '${transfer.itemCount} item${transfer.itemCount == 1 ? '' : 's'} · $when',
                   style: TextStyle(
@@ -1571,8 +1573,8 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
         : 'Never';
 
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.all(14),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: LsColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -1601,7 +1603,7 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
                   color: statusColor,
                   size: 20),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1624,7 +1626,7 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
                             size: 14, color: LsColors.info),
                       ),
                   ]),
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
                   Text(
                       'Last seen: $lastSeen · ${device.totalSyncs} sync${device.totalSyncs == 1 ? "" : "s"}',
                       style: TextStyle(fontSize: 11, color: LsColors.subText)),
@@ -1633,7 +1635,7 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
             ),
             _StatusPill(approved: approved),
           ]),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(children: [
             if (!approved) ...[
               Expanded(
@@ -1642,7 +1644,7 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
                     style: TextStyle(
                         fontSize: 11, color: LsColors.subText, height: 1.4)),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               _Btn(
                   label: 'Approve',
                   color: LsColors.success,
@@ -1653,7 +1655,7 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
                 child: Text('Approved · ready to receive transfers.',
                     style: TextStyle(fontSize: 11, color: LsColors.subText)),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               _Btn(
                   label: 'Revoke',
                   color: LsColors.danger,
@@ -1673,18 +1675,19 @@ class _DeviceManageCardState extends State<_DeviceManageCard> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Revoke access?'),
+        title: const Text('Revoke access?'),
         content: Text('"$name" will no longer be able to sync.'),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context), child: Text('Cancel')),
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel')),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: LsColors.danger),
             onPressed: () {
               Navigator.pop(context);
               widget.svc.revokeDevice(widget.device.id);
             },
-            child: Text('Revoke'),
+            child: const Text('Revoke'),
           ),
         ],
       ),
@@ -1738,19 +1741,19 @@ class _HistoryTabState extends State<_HistoryTab> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     }
     if (_logs.isEmpty) {
       return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Icon(Icons.swap_horiz_rounded, size: 52, color: LsColors.border),
-          SizedBox(height: 14),
+          const SizedBox(height: 14),
           Text('No transfers yet',
               style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 15,
                   color: LsColors.subText)),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           Text(
             'Sent and received ${widget.itemLabel.toLowerCase()} batches\nappear here after they complete.',
             textAlign: TextAlign.center,
@@ -1761,7 +1764,7 @@ class _HistoryTabState extends State<_HistoryTab> {
     }
 
     return ListView.builder(
-      padding: EdgeInsets.all(14),
+      padding: const EdgeInsets.all(14),
       itemCount: _logs.length,
       itemBuilder: (_, i) {
         final log = _logs[i];
@@ -1825,7 +1828,7 @@ class _HistoryCardState extends State<_HistoryCard> {
     final color = widget.color;
 
     return Container(
-      margin: EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         color: LsColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -1845,7 +1848,7 @@ class _HistoryCardState extends State<_HistoryCard> {
                 : null,
             borderRadius: BorderRadius.circular(12),
             child: Padding(
-              padding: EdgeInsets.all(14),
+              padding: const EdgeInsets.all(14),
               child: Row(children: [
                 Container(
                   width: 40,
@@ -1855,7 +1858,7 @@ class _HistoryCardState extends State<_HistoryCard> {
                       shape: BoxShape.circle),
                   child: Icon(widget.icon, color: color, size: 20),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1873,8 +1876,8 @@ class _HistoryCardState extends State<_HistoryCard> {
                           ),
                         ),
                         Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 3),
                           decoration: BoxDecoration(
                             color: color.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(20),
@@ -1888,15 +1891,15 @@ class _HistoryCardState extends State<_HistoryCard> {
                                   color: color)),
                         ),
                       ]),
-                      SizedBox(height: 3),
+                      const SizedBox(height: 3),
                       Row(children: [
                         Icon(Icons.access_time_rounded,
                             size: 11, color: LsColors.hint),
-                        SizedBox(width: 3),
+                        const SizedBox(width: 3),
                         Text(widget.when,
                             style: TextStyle(
                                 fontSize: 11, color: LsColors.subText)),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                             '${log.itemCount} ${widget.itemLabel.toLowerCase()}${log.itemCount == 1 ? "" : "s"}',
                             style:
@@ -1920,12 +1923,12 @@ class _HistoryCardState extends State<_HistoryCard> {
           if (_expanded && widget.names.isNotEmpty) ...[
             Divider(height: 1, color: LsColors.border),
             Padding(
-              padding: EdgeInsets.fromLTRB(14, 8, 14, 12),
+              padding: const EdgeInsets.fromLTRB(14, 8, 14, 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: widget.names
                     .map((n) => Padding(
-                          padding: EdgeInsets.only(bottom: 4),
+                          padding: const EdgeInsets.only(bottom: 4),
                           child: Text('· $n',
                               style: TextStyle(
                                   fontSize: 12, color: LsColors.text)),
@@ -1979,7 +1982,7 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Icon(icon, size: 16, color: LsColors.primary),
-      SizedBox(width: 6),
+      const SizedBox(width: 6),
       Expanded(
           child: Text(label,
               style: TextStyle(
@@ -1995,7 +1998,7 @@ class _WatchingPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: LsColors.success.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
@@ -2008,7 +2011,7 @@ class _WatchingPill extends StatelessWidget {
           child: CircularProgressIndicator(
               strokeWidth: 1.5, color: LsColors.success),
         ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         Text('Live',
             style: TextStyle(
                 fontSize: 10,
@@ -2048,7 +2051,7 @@ class _StatusPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = approved ? LsColors.success : LsColors.warning;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
@@ -2071,7 +2074,7 @@ class _HintCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.07),
         borderRadius: BorderRadius.circular(10),
@@ -2079,7 +2082,7 @@ class _HintCard extends StatelessWidget {
       ),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Icon(icon, size: 15, color: color),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Expanded(
             child: Text(text,
                 style: TextStyle(
@@ -2093,16 +2096,16 @@ class _WaitingState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 28),
+      padding: const EdgeInsets.symmetric(vertical: 28),
       child: Column(children: [
         Icon(Icons.wifi_find_rounded, size: 42, color: LsColors.border),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text('Waiting for connected devices…',
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 13,
                 color: LsColors.subText)),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           'Make sure the other device has started\nits server and is on the same Wi-Fi.',
           textAlign: TextAlign.center,
@@ -2120,7 +2123,7 @@ class _ErrorBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: LsColors.danger.withValues(alpha: 0.07),
         borderRadius: BorderRadius.circular(8),
@@ -2128,7 +2131,7 @@ class _ErrorBanner extends StatelessWidget {
       ),
       child: Row(children: [
         Icon(Icons.error_outline_rounded, color: LsColors.danger, size: 16),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Expanded(
             child: Text(message,
                 style: TextStyle(fontSize: 11, color: LsColors.text))),
@@ -2159,8 +2162,8 @@ class _Btn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = compact
-        ? EdgeInsets.symmetric(horizontal: 14, vertical: 8)
-        : EdgeInsets.symmetric(vertical: 13);
+        ? const EdgeInsets.symmetric(horizontal: 14, vertical: 8)
+        : const EdgeInsets.symmetric(vertical: 13);
     final shape =
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(9));
     final child = loading
@@ -2175,7 +2178,7 @@ class _Btn extends StatelessWidget {
             children: [
               if (icon != null) ...[
                 Icon(icon, size: 15, color: outlined ? color : LsColors.white),
-                SizedBox(width: 4),
+                const SizedBox(width: 4),
               ],
               Text(label,
                   style: TextStyle(

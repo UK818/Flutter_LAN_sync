@@ -1,3 +1,13 @@
+## 0.1.3
+
+- Updated `flutter_secure_storage` to 10.x, retaining automatic Android
+  migration from the encrypted shared-preferences backend to the new default
+  cipher storage.
+- Updated `device_info_plus` to the maintained 10.1.x release; version 10.0.0
+  is retracted upstream.
+- Raised the package floor to Dart 3.3 and Flutter 3.19 to match the upgraded
+  plugins.
+
 ## 0.1.2
 
 - Moved the package to its independent GitHub repository and removed host-app

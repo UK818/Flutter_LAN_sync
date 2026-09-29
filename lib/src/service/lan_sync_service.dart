@@ -73,8 +73,9 @@ class LanSyncService {
   int _runGeneration = 0;
   StreamSubscription<void>? _syncTimer;
 
-  static const _storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(encryptedSharedPreferences: true));
+  // flutter_secure_storage 10 migrates the legacy Android backend to its
+  // current cipher storage automatically on first access.
+  static const _storage = FlutterSecureStorage();
   static const _deviceIdKey = 'lan_sync_device_id';
 
   // ── Status stream ─────────────────────────────────────────────────────────────

@@ -68,7 +68,7 @@ class LanSyncServer {
       ..get('/sync/pull', _withAuth(_handlePull))
       ..post('/items/push', _withAuth(_handleItemPush));
 
-    final handler = Pipeline()
+    final handler = const Pipeline()
         .addMiddleware(logRequests())
         .addMiddleware(_corsMiddleware())
         .addHandler(router.call);

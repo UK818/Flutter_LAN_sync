@@ -13,9 +13,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class LanSyncCrypto {
   LanSyncCrypto._();
 
-  static const FlutterSecureStorage _storage = FlutterSecureStorage(
-    aOptions: AndroidOptions(encryptedSharedPreferences: true),
-  );
+  // flutter_secure_storage 10 migrates the legacy Android backend to its
+  // current cipher storage automatically on first access.
+  static const FlutterSecureStorage _storage = FlutterSecureStorage();
 
   static const String _privateKeyStorageKey = 'lan_sync_x25519_private_key';
   static const String _hkdfInfo = 'flutter_lan_sync_v1';

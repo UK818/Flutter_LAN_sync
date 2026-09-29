@@ -29,6 +29,8 @@
 ///   )).toList(),
 /// )
 /// ```
+library;
+
 export 'src/config.dart';
 export 'src/lan_sync.dart';
 export 'src/database/lan_sync_database.dart'
