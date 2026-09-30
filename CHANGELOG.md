@@ -1,3 +1,13 @@
+## 0.1.5
+
+- Updated `flutter_secure_storage` to stable 11.x and `device_info_plus` to
+  stable 13.x so host applications can keep shared plugin dependencies current.
+- Skipped `device_info_plus` 11.x because its `win32` 5.x constraint conflicts
+  with the `win32` 6.x requirement in `flutter_secure_storage` 11.x.
+- Updated `package_info_plus` to 10.x to use the same `win32` 6.x dependency
+  line.
+- Raised the Dart SDK floor to 3.8, required by `flutter_secure_storage` 11.x.
+
 ## 0.1.4
 
 - Updated analyzer exclusions for generated build output in the package and
